@@ -28,10 +28,10 @@ class HomeState extends StatefulWidget{
 }
 
 class _HomeState extends State<HomeState>{
-  File? _imagePicker;
+  File ? _imagePicker;
   dynamic errorImage;
 
-  void _onImageButtonPressed(ImageSource source)async{
+  Future<void> _onImageButtonPressed(ImageSource source)async{
     try{
        XFile ? pickImage=await ImagePicker().pickImage(source: source);
         if (pickImage != null) {
@@ -57,7 +57,6 @@ Widget displayImage(){
 
   @override
   Widget build(BuildContext context){
-
     return  Scaffold(
       appBar: AppBar(title:  Text(widget.title),backgroundColor: Colors.green),
       body: Center(child: displayImage(),),
@@ -77,8 +76,10 @@ Widget displayImage(){
                       backgroundColor: Colors.green,
                       onPressed: (){_onImageButtonPressed(ImageSource.gallery);},
                       child: const Icon(Icons.photo_library),
-               ),)
-      ]),
+               ),
+               ),
+      ],
+      ),
     );
   }
 }
